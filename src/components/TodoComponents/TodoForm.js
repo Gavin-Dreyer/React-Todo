@@ -28,6 +28,9 @@ class TodoForm extends React.Component {
     submitSearch = e => {
         e.preventDefault()
         this.props.taskFilter(this.state.search)
+        this.setState({
+            search: ''
+        })
     }
 
 
