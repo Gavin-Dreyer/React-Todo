@@ -6,7 +6,8 @@ class TodoForm extends React.Component {
     constructor() {
         super ()
         this.state = {
-            task: ''
+            task: '',
+            search: ''
         }
     }
 
@@ -24,18 +25,33 @@ class TodoForm extends React.Component {
         })
     }
 
+    submitSearch = e => {
+        e.preventDefault()
+        this.props.taskFilter(this.state.search)
+    }
+
 
     render () {
         return (
-            <form onSubmit={this.submitTask}>
-                <input 
-                type='text'
-                value={this.state.task}
-                name='task'
-                onChange={this.handleChange}/>
-                <button>Add</button>
-
-            </form>
+            <>
+                <form onSubmit={this.submitTask}>
+                    <input 
+                    type='text'
+                    name='task'
+                    value={this.state.task}
+                    onChange={this.handleChange}/>
+                    <button >Add</button>
+                </form>
+                <form onSubmit={this.submitSearch}>
+                    <input 
+                    type='text'
+                    name='search'
+                    value={this.state.search}
+                    onChange={this.handleChange}
+                    />
+                    <button>Search</button>
+                </form>
+            </>
         )
     }
 }

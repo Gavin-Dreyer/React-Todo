@@ -59,6 +59,14 @@ class App extends React.Component {
     })
   }
 
+  taskFilter = filteredItem => {
+    this.setState({
+      taskList: this.state.taskList.filter(item => 
+        item.task.toLowerCase().includes(filteredItem)
+      )
+    })
+  }
+
   clearTask = () => {
     this.setState({
       taskList: this.state.taskList.filter(item => !item.completed)
@@ -71,8 +79,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addTask={this.addTask} />
-        <TodoList taskData={this.state.taskList} toggleTask={this.toggleTask} clearTask={this.clearTask}/>
+        <TodoForm addTask={this.addTask} taskFilter={this.taskFilter} />
+        <TodoList taskData={this.state.taskList} toggleTask={this.toggleTask} clearTask={this.clearTask} />
         
       </div>
     );
